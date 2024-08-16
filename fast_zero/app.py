@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from fastapi import FastAPI
 
-from fast_zero.schemas import Message, UserDB, UserPublic, UserSchema
+from fast_zero.schemas import Message, UserDB, UserList, UserPublic, UserSchema
 
 database = []  # Lista que simula momentâneo Banco de Dados
 app = FastAPI()
@@ -21,3 +21,9 @@ def create_user(user: UserSchema):
     database.append(user_with_id)  # Adiciona o usuário criado na lista
 
     return user_with_id
+
+
+# Endpoint para retornar todos os usuários cadadastrados no Banco de Dados
+@app.get('/users/', response_model=UserList)
+def read_users():
+    return {'users': database}
