@@ -12,11 +12,18 @@ class UserSchema(BaseModel):
 
 
 """
-    Schema que será retornado de maneira pública com as informações do usuário
-    foi retirado o atributo password por questão de segurança
+Schema processa a saída do usuário
+retirandno
+o atributo a senha
+por questão de segurança
 """
 
 
 class UserPublic(BaseModel):
+    id: int
     username: str
     email: EmailStr
+
+
+class UserDB(UserSchema):
+    id: int
